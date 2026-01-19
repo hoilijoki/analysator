@@ -60,6 +60,7 @@ def plot_isosurface(filename=None,
                     highres=None,
                     boxm=[],boxre=[],
                     colormap=None,
+                    axes=None,
                     run=None,wmark=None, nocb=False,
                     unit=None, thick=1.0,scale=1.0,
                     vscale=1.0,
@@ -556,11 +557,18 @@ def plot_isosurface(filename=None,
         logging.info("Selected color range: "+str(vminuse)+" to "+str(vmaxuse))
 
     # Create 300 dpi image of suitable size
-    fig = plt.figure(figsize=[4.5,4.5],dpi=300)
-    #ax1 = fig.gca(projection='3d')
-    ax1 = fig.add_subplot(111, projection='3d')
-
+    # fig = plt.figure(figsize=[4.5,4.5],dpi=300)
+    ## ax1 = fig.gca(projection='3d')
+    # ax1 = fig.add_subplot(111, projection='3d')
+    if not axes:
+        # Create 300 dpi image of suitable size
+        fig = plt.figure(figsize=[4.5,4.5],dpi=300)
+        ax1 = fig.add_subplot(111, projection='3d') # get current axes
+    else:
+        ax1=axes
+        fig = plt.gcf() # get current figure
     # If requested high res image
+
     if highres:
         highresscale = 2
         if ((type(highres) is float) or (type(highres) is int)):
@@ -765,7 +773,7 @@ def plot_isosurface(filename=None,
             logging.info(savefigname+"\n")
     else:
         plt.draw()
-        plt.show()
+        #plt.show()
 
 
 
