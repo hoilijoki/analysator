@@ -1,2 +1,3 @@
 __pycache__/
 **/*.pyc
+scripts/Sanni_trace_FTEs/*.png
